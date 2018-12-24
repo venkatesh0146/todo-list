@@ -1,6 +1,6 @@
 # todo-list
 
-#Project Description -
+# Project Description -
 This project is aimed to create a ready to deploy Live TODO List management system.
 It must have all the features mentioned below and it must be deployed on a server
 before submission. There should be two separate parts of the application. A Frontend
@@ -11,7 +11,7 @@ Backend Technologies  - NodeJS, ExpressJS and Socket.IO
 Database  - MongoDB 
 
 
-#Features of the Application -
+# Features of the Application -
 1) User management System -
 a) Signup - User should be able to sign up on the platform providing all
 details like FirstName, LastName, Email and Mobile number. Country
