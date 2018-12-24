@@ -1,0 +1,89 @@
+<div *ngIf="!flag">
+  <div class="container">
+    <div *ngIf='userDetails'>
+      <div class="row">
+          <div class="col-12">
+      <button type="submit" class="btn btn-primary float-left" (click)="back($event)">Back</button>
+      <button type="submit" class="btn btn-primary float-right" (click)="signOut($event)">Logout</button>
+      <br>
+      </div>
+      </div>
+      <br>
+    <div class="row">
+      <div class="col">
+<div class="card text-center">
+  <div class="card-header">
+    {{issue.title}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Created By : {{issue.firstName}}</h5>
+    <p class="card-text" [innerHtml]="issue.description"></p>
+    <a  class="btn btn-primary" (click)="switch()">Edit</a>
+  </div>
+  <div class="card-footer text-muted">
+     Created on : {{issue.createdOn |date:'shortDate'}}
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div *ngIf="flag">
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+<button type="submit" class="btn btn-primary float-left" (click)="back()">Back</button>
+<button type="submit" class="btn btn-primary float-right" (click)="signOut($event)">Logout</button>
+<br>
+</div>
+</div>
+</div>  
+  <div class="row justify-content-center">
+    <div class="col-6">
+      
+      <form (ngSubmit)=" issueUpdate()" #issueForm="ngForm">
+
+        <div class="form-group">
+            <label for="inputFirstName">First Name</label>
+            <input type="text" name="firstName" [(ngModel)]="firstName" class="form-control" id="inputFirstName" aria-describedby="emailHelp" placeholder={{userDetails.firstName}}  value={{userDetails.firstName}} > 
+            <div class="invalid-feedback">invalid First Name </div>
+
+          
+        </div>
+
+        <div class="form-group">
+            <label for="inputLastName">Last Name</label>
+            <input type="text" name="lastName" [(ngModel)]="lastName" class="form-control" id="inputLastName" aria-describedby="emailHelp" placeholder={{userDetails.lastName}}  value={{userDetails.lastName}} > 
+            <div class="invalid-feedback">invalid Last Name </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="inputTitle">Title</label>
+            <input type="text" name="title" [(ngModel)]="title" class="form-control" id="inputTitle" aria-describedby="emailHelp" placeholder="Please Enter Text here"   required> 
+            <div class="invalid-feedback">Please enter Title  </div>
+        </div>
+        <div class="form-group">
+            <label for="inputDescription">description</label> 
+            <textarea [froalaEditor] type="text" class="form-control" [(ngModel)]="description" id="inputDescription" rows="5" name="description" required></textarea>
+          <div class="invalid-feedback">Enter description  </div>
+        </div>
+       
+        <div class="form-group">
+            <label for="inputReporter">Assigned To</label>
+            <input type="text" name="Reporter" [(ngModel)]="Reporter" class="form-control" id="inputReporter" aria-describedby="emailHelp"  required> 
+            <div class="invalid-feedback">Assign To </div>
+            </div>
+    
+        <button type="submit" class="btn btn-primary" [disabled]="!issueForm.form.valid">Submit</button>
+        
+      </form>
+    
+    
+
+      <br>
+    </div>
+  </div>
+
+</div>

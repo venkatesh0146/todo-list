@@ -1,0 +1,88 @@
+
+<div class="container">
+  <div class="row justify-content-between">
+    <div class="col-auto mr-auto">
+      <button type="submit" class="btn btn-dark" (click)="newIssue()" >back</button> 
+    </div>
+    <div class="col-auto">
+      <button type="submit" class=" btn btn-dark " (click)="signOut()" >logOut</button> 
+ </div>
+  </div>
+<br>
+
+<button type="submit" class=" btn btn-dark " (click)="newIssue()" >Create New Issue</button> 
+
+
+<div class="row">
+        <div class="col-12 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+
+<h5>Below is the issue list Assigned to you</h5>
+        </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-sm-12 col-lg-12">
+
+<nav class="navbar">
+    <input class="form-control" type="text" [(ngModel)]="filter" name="search" placeholder="search for any issue">      
+  </nav>
+</div>
+</div>
+<div class="row">
+<div class="table-responsive">
+
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+
+      <div class="table-responsive-sm">
+  <table class="table " data-link="row">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th (click)="sort('firstName')" scope="col">first Name
+            <span class="glyphicon sort-icon" *ngIf="key =='firstName'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th (click)="sort('lastName')" scope="col" >last Name
+            <span class="glyphicon sort-icon" *ngIf="key =='lastName'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th (click)="sort('title')" scope="col" >title
+            <span class="glyphicon sort-icon" *ngIf="key =='title'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th (click)="sort('description')" scope="col" >description
+            <span class="glyphicon sort-icon" *ngIf="key =='description'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th (click)="sort('Reporter')" scope="col">Reporter
+            <span class="glyphicon sort-icon" *ngIf="key =='Reporter'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+        <th (click)="sort('createdOn')" scope="col">Created on
+            <span class="glyphicon sort-icon" *ngIf="key =='createdOn'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr scope="row"  *ngFor="let issue of allIssues | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 7, currentPage: p }; let i = index">
+        <td><button type="submit" class="btn btn-light " [routerLink]="['/view',issue.issueId]" >view</button></td>
+       <td>{{issue.firstName}}</td>
+        <td>{{issue.lastName}}</td>
+        <td>{{issue.title}}</td>
+         <td [innerHtml]="issue.description"></td>
+           <td>{{issue.Reporter}}</td>
+             <td>{{issue.createdOn |date:'shortDate'}}</td>
+
+      </tr>
+    </tbody>
+    
+    
+  </table>
+      </div>
+      
+    </div>
+    </div>
+</div>
+        
+
+    <div class="col align-self-center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+   
+  </div>
+</div>
